@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerador de Assinatura</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .signature {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-top: 20px;
+        display: none; /* Escondido até gerar a assinatura */
+      }
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .user-photo {
+        margin-bottom: 10px;
+      }
+      .logo {
+        width: 80px;
+        height: auto;
+        margin-top: 10px;
+        border-radius: 0%;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      .form-group button {
+        padding: 10px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gerador de Assinatura</h1>
+      <form id="signature-form">
+        <div class="form-group">
+          <label for="name">Nome:</label>
+          <input type="text" id="name" placeholder="Digite seu nome" required />
+        </div>
+        <div class="form-group">
+          <label for="role">Cargo:</label>
+          <input
+            type="text"
+            id="role"
+            placeholder="Digite seu cargo"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefone:</label>
+          <input
+            type="text"
+            id="phone"
+            placeholder="Digite seu telefone"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Digite seu e-mail"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="photo-url">URL da Foto:</label>
+          <input
+            type="url"
+            id="photo-url"
+            placeholder="Digite a URL da sua foto"
+            required
+          />
+        </div>
+        <button type="submit">Gerar Assinatura</button>
+      </form>
+
+      <div class="signature" id="signature-preview">
+        <table style="width: 100%">
+          <tr>
+            <td style="vertical-align: middle; text-align: center">
+              <img id="user-photo" class="user-photo" alt="Danilo Souza Brun" />
+              <br />
+              <img
+                src="https://cifraengenharia.com.br/wp-content/uploads/2018/08/logo-site.png"
+                alt="Logo Cifra"
+                class="logo"
+              />
+            </td>
+            <td style="padding-left: 15px; vertical-align: middle">
+              <p
+                id="signature-name"
+                style="
+                  margin: 0;
+                  font-size: 16px;
+                  font-weight: bold;
+                  color: #007bff;
+                "
+              ></p>
+              <p
+                id="signature-role"
+                style="margin: 2px 0 5px 0; font-size: 14px; color: #555"
+              ></p>
+              <p style="margin: 2px 0 5px 0; font-size: 14px; color: #555">
+                <strong>Cifra Engenharia Serviços Limitada</strong>
+              </p>
+              <p style="margin: 2px 0; font-size: 14px">
+                📞
+                <span id="signature-phone" style="color: #007bff"></span><br />
+                ✉️
+                <span id="signature-email" style="color: #007bff"></span><br />
+                🌐
+                <a
+                  href="https://www.cifraengenharia.com.br"
+                  style="color: #007bff; text-decoration: none"
+                  >cifraengenharia.com.br</a
+                ><br />
+                📍
+                <a
+                  href="https://www.google.com.br/maps/dir//Av.+Dr.+Jos%C3%A9+Augusto+Moreira,+900+-+Casa+Caiada,+Olinda+-+PE,+53130-410/@-7.9877139,-34.9211634,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x7ab3daa0352c327:0xc48545026b339a53!2m2!1d-34.8387615!2d-7.9877221?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D"
+                  style="color: #007bff; text-decoration: none"
+                  >Av. Dr. José Augusto Moreira, 900 - Casa Caiada, Olinda - PE,
+                  53130-410</a
+                >
+              </p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("signature-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Captura os valores dos inputs
+          const name = document.getElementById("name").value;
+          const role = document.getElementById("role").value;
+          const phone = document.getElementById("phone").value;
+          const email = document.getElementById("email").value;
+          const photoUrl = document.getElementById("photo-url").value;
+
+          // Preenche os campos na assinatura
+          document.getElementById("signature-name").textContent = name;
+          document.getElementById("signature-role").textContent = role;
+          document.getElementById("signature-phone").textContent = phone;
+          document.getElementById("signature-email").textContent = email;
+          document.getElementById("user-photo").src = photoUrl;
+
+          // Exibe a assinatura
+          document.getElementById("signature-preview").style.display = "block";
+        });
+    </script>
+  </body>
+</html>
