@@ -65,11 +65,20 @@
           <input type="text" id="name" placeholder="Digite seu nome" required />
         </div>
         <div class="form-group">
-          <label for="role">Cargo:</label>
+          <label for="role">Função:</label>
           <input
             type="text"
             id="role"
-            placeholder="Digite seu cargo"
+            placeholder="Digite seu função"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="contract">Contrato:</label>
+          <input
+            type="text"
+            id="contract"
+            placeholder="Informe o contrato exemplo GNR Russas, DESO, Cadastro"
             required
           />
         </div>
@@ -129,6 +138,10 @@
                 id="signature-role"
                 style="margin: 2px 0 5px 0; font-size: 14px; color: #555"
               ></p>
+              <p
+                id="signature-contract"
+                style="margin: 2px 0 5px 0; font-size: 14px; color: #555"
+              ></p>
               <p style="margin: 2px 0 5px 0; font-size: 14px; color: #555">
                 <strong>Cifra Engenharia Serviços Limitada</strong>
               </p>
@@ -169,6 +182,7 @@
           const phone = document.getElementById("phone").value;
           const email = document.getElementById("email").value;
           const photoUrl = document.getElementById("photo-url").value;
+          const contract = document.getElementById("contract").value;
 
           // Preenche os campos na assinatura
           document.getElementById("signature-name").textContent = name;
@@ -176,6 +190,8 @@
           document.getElementById("signature-phone").textContent = phone;
           document.getElementById("signature-email").textContent = email;
           document.getElementById("user-photo").src = photoUrl;
+          document.getElementById("signature-contract").textContent =
+            "Contrato: " + contract;
 
           // Exibe a assinatura
           document.getElementById("signature-preview").style.display = "block";
