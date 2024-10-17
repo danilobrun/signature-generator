@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerador de Assinatura</title>
+    <meta
+      name="description"
+      content="Gerador de assinatura eletrônica para os funcionários da Cifra Engenharia e Serviços."
+    />
+    <link rel="icon" href="./images/logo-cifra-transparent.png" />
+    <title>✍🏻 Gerador de Assinatura</title>
     <style>
       /* Estilo global com tema claro e moderno */
       body {
@@ -101,7 +106,6 @@
         height: 80px;
         border-radius: 50%;
         object-fit: cover;
-        margin-bottom: 10px;
       }
 
       .signature .logo {
@@ -143,7 +147,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Gerador de Assinatura</h1>
+      <h1>Gerador de Assinatura ✍🏻</h1>
       <form id="signature-form">
         <div class="form-group">
           <label for="name">Nome:</label>
@@ -168,11 +172,11 @@
           />
         </div>
         <div class="form-group">
-          <label for="phone">Telefone:</label>
+          <label for="phone">Telefone (WhatsApp):</label>
           <input
             type="text"
             id="phone"
-            placeholder="Digite seu telefone"
+            placeholder="Somente números DD+Número exemplo: 81988887777"
             required
           />
         </div>
@@ -245,9 +249,19 @@
                 id="signature-contract"
                 style="font-size: 14px; color: #555"
               ></p>
-              <p><strong>Cifra Engenharia Serviços Limitada</strong></p>
+              <p><strong>Cifra Engenharia e Serviços Limitada</strong></p>
               <p style="font-size: 14px">
-                📞 <a id="signature-phone" href="#" style="color: #3498db"></a
+                <!-- Ícone do WhatsApp e número clicável -->
+                <a
+                  id="signature-whatsapp"
+                  href="#"
+                  target="_blank"
+                  style="color: #3498db"
+                  ><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    alt="WhatsApp"
+                    style="width: 20px; height: 20px; vertical-align: middle" />
+                  <span id="whatsapp-number"></span></a
                 ><br />
                 ✉️ <a id="signature-email" href="#" style="color: #3498db"></a
                 ><br />
@@ -305,6 +319,16 @@
     </div>
 
     <script>
+      // Aplicando a máscara de telefone
+      document.getElementById("phone").addEventListener("input", function (e) {
+        const x = e.target.value
+          .replace(/\D/g, "")
+          .match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        e.target.value = !x[2]
+          ? x[1]
+          : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+      });
+
       document
         .getElementById("signature-form")
         .addEventListener("submit", function (e) {
@@ -313,7 +337,9 @@
           // Captura os valores dos inputs
           const name = document.getElementById("name").value;
           const role = document.getElementById("role").value;
-          const phone = document.getElementById("phone").value;
+          const phone = document
+            .getElementById("phone")
+            .value.replace(/\D/g, "");
           const email = document.getElementById("email").value;
           const photoUrl = document.getElementById("photo-url").value;
           const contract = document.getElementById("contract").value;
@@ -324,8 +350,12 @@
           // Preenche os campos na assinatura
           document.getElementById("signature-name").textContent = name;
           document.getElementById("signature-role").textContent = role;
-          document.getElementById("signature-phone").href = `tel:${phone}`;
-          document.getElementById("signature-phone").textContent = phone;
+          document.getElementById(
+            "signature-whatsapp"
+          ).href = `https://wa.me/55${phone}`;
+          document.getElementById(
+            "whatsapp-number"
+          ).textContent = `+55 ${phone}`;
           document.getElementById("signature-email").href = `mailto:${email}`;
           document.getElementById("signature-email").textContent = email;
           document.getElementById("user-photo").src = photoUrl;
