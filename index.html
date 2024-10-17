@@ -247,9 +247,9 @@
               ></p>
               <p><strong>Cifra Engenharia Serviços Limitada</strong></p>
               <p style="font-size: 14px">
-                📞 <span id="signature-phone" style="color: #3498db"></span
+                📞 <a id="signature-phone" href="#" style="color: #3498db"></a
                 ><br />
-                ✉️ <span id="signature-email" style="color: #3498db"></span
+                ✉️ <a id="signature-email" href="#" style="color: #3498db"></a
                 ><br />
                 🌐
                 <a href="https://www.cifraengenharia.com.br"
@@ -324,7 +324,9 @@
           // Preenche os campos na assinatura
           document.getElementById("signature-name").textContent = name;
           document.getElementById("signature-role").textContent = role;
+          document.getElementById("signature-phone").href = `tel:${phone}`;
           document.getElementById("signature-phone").textContent = phone;
+          document.getElementById("signature-email").href = `mailto:${email}`;
           document.getElementById("signature-email").textContent = email;
           document.getElementById("user-photo").src = photoUrl;
           document.getElementById("signature-contract").textContent =
