@@ -172,6 +172,15 @@
           />
         </div>
         <div class="form-group">
+          <label for="landline">Telefone Fixo:</label>
+          <input
+            type="text"
+            id="landline"
+            placeholder="Somente números DD+Número exemplo: 8133337777"
+            required
+          />
+        </div>        
+        <div class="form-group">
           <label for="phone">Telefone (WhatsApp):</label>
           <input
             type="text"
@@ -251,6 +260,10 @@
               ></p>
               <p><strong>Cifra Engenharia e Serviços</strong></p>
               <p style="font-size: 14px">
+                <p style="font-size: 14px">
+                  📞 <span id="landline-number"></span><br />
+                </p>
+                
                 <!-- Ícone do WhatsApp e número clicável -->
                 <a
                   id="signature-whatsapp"
@@ -329,6 +342,16 @@
           : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
       });
 
+      document.getElementById("landline").addEventListener("input", function (e) {
+        const x = e.target.value
+          .replace(/\D/g, "")
+          .match(/(\d{0,2})(\d{0,4})(\d{0,4})/);
+        e.target.value = !x[2]
+          ? x[1]
+          : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+      });
+
+
       document
         .getElementById("signature-form")
         .addEventListener("submit", function (e) {
@@ -336,6 +359,12 @@
 
           // Captura os valores dos inputs
           const name = document.getElementById("name").value;
+          const landline = document.getElementById("landline").value.replace(/\D/g, "");
+          document.getElementById("landline-number").textContent = `+55 (${landline.slice(
+            0,
+            2
+          )}) ${landline.slice(2, 6)}-${landline.slice(6)}`;
+
           const role = document.getElementById("role").value;
           const phone = document
             .getElementById("phone")
