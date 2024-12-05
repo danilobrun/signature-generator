@@ -8,3 +8,8 @@ Explicação:
 O form captura os dados inseridos.
 O addEventListener no JavaScript trata o envio do formulário sem recarregar a página.
 A assinatura é gerada e preenchida dinamicamente, exibindo a foto e as informações fornecidas.
+
+# macOS
+
+Path: /Users/{youUser}/Library/Mail/V10/MailData/Signatures
+Edit example.mailsignature: phone data
